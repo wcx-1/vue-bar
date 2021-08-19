@@ -9,32 +9,37 @@
       </div>
       <div class="bullshit">
         <div class="bullshit__oops">OOPS!</div>
-        <div class="bullshit__info">All rights reserved
-          <a style="color:#20a0ff" href="https://wallstreetcn.com" target="_blank">wallstreetcn</a>
+        <div class="bullshit__info">
+          All rights reserved
+          <a style="color: #20a0ff" href="https://wallstreetcn.com" target="_blank">wallstreetcn</a>
         </div>
         <div class="bullshit__headline">{{ message }}</div>
-        <div class="bullshit__info">Please check that the URL you entered is correct, or click the button below to return to the homepage.</div>
+        <div class="bullshit__info">
+          Please check that the URL you entered is correct, or click the button
+          below to return to the homepage.
+        </div>
+        <!-- 请检查您输入的url是否正确，或单击按钮在下面返回主页。 -->
         <a href="" class="bullshit__return-home">Back to home</a>
       </div>
     </div>
   </div>
 </template>
-
 <script>
-
+// 单纯的一个404页面，没啥说的
 export default {
   name: 'Page404',
   computed: {
     message() {
       return 'The webmaster said that you can not enter this page...'
+      // 网站管理员说你不能进入这个页面
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.wscn-http404-container{
-  transform: translate(-50%,-50%);
+.wscn-http404-container {
+  transform: translate(-50%, -50%);
   position: absolute;
   top: 40%;
   left: 50%;

@@ -1,4 +1,4 @@
-// global transition css
+// 全局转换CSS
 
 /* fade */
 .fade-enter-active,
@@ -27,7 +27,7 @@
   transform: translateX(30px);
 }
 
-/* breadcrumb transition */
+/* breadcrumb 过度 */
 .breadcrumb-enter-active,
 .breadcrumb-leave-active {
   transition: all .5s;

@@ -1,7 +1,7 @@
 import store from '@/store'
 
 const { body } = document
-const WIDTH = 992 // refer to Bootstrap's responsive design
+const WIDTH = 992 // 请参阅Bootstrap的响应式设计
 
 export default {
   watch: {
@@ -25,7 +25,7 @@ export default {
     }
   },
   methods: {
-    // use $_ for mixins properties
+    // 将$_用于mixin属性
     // https://vuejs.org/v2/style-guide/index.html#Private-property-names-essential
     $_isMobile() {
       const rect = body.getBoundingClientRect()

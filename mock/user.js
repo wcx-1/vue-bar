@@ -24,7 +24,7 @@ const users = {
 }
 
 module.exports = [
-  // user login
+  // 用户登录
   {
     url: '/vue-admin-template/user/login',
     type: 'post',
@@ -32,7 +32,7 @@ module.exports = [
       const { username } = config.body
       const token = tokens[username]
 
-      // mock error
+      // 模拟错误
       if (!token) {
         return {
           code: 60204,
@@ -47,7 +47,7 @@ module.exports = [
     }
   },
 
-  // get user info
+  // 获取用户信息
   {
     url: '/vue-admin-template/user/info\.*',
     type: 'get',
@@ -55,7 +55,7 @@ module.exports = [
       const { token } = config.query
       const info = users[token]
 
-      // mock error
+      // 模拟错误
       if (!info) {
         return {
           code: 50008,
@@ -70,7 +70,7 @@ module.exports = [
     }
   },
 
-  // user logout
+  // 用户登出
   {
     url: '/vue-admin-template/user/logout',
     type: 'post',

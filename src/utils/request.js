@@ -3,22 +3,25 @@ import { MessageBox, Message } from 'element-ui'
 import store from '@/store'
 import { getToken } from '@/utils/auth'
 
-// create an axios instance
+// 创建axios实例
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API, // url = base url + request url
-  // withCredentials: true, // send cookies when cross-domain requests
-  timeout: 5000 // request timeout
+  // withCredentials: true, // 当跨域请求时发送cookie
+  timeout: 5000 // 请求超时
 })
 
-// request interceptor
+// request拦截器
+// 该拦截器主要在有request时，如果在store中存储有token则在headers中带上x-Token
+// 实际这个拦截器中直接return config即可，然后在登录完成后，访问其他页面的时候带上token访问。
 service.interceptors.request.use(
   config => {
-    // do something before request is sent
+    // 在 request 发送前做点什么
 
     if (store.getters.token) {
-      // let each request carry token
+      // 让每个 request 带着 token
       // ['X-Token'] is a custom headers key
-      // please modify it according to the actual situation
+      // 请根据实际情况进行修改
+      // 这里用了utils下面的auth.js里面的getToken函数
       config.headers['X-Token'] = getToken()
     }
     return config
@@ -30,17 +33,17 @@ service.interceptors.request.use(
   }
 )
 
-// response interceptor
+// 响应拦截器
 service.interceptors.response.use(
   /**
-   * If you want to get http information such as headers or status
+   * 如果你想要得到 http 信息，比如 headers 或 status
    * Please return  response => response
   */
 
   /**
-   * Determine the request status by custom code
+   * 通过自定义代码确定请求状态
    * Here is just an example
-   * You can also judge the status by HTTP Status Code
+   * 你也可以通过HTTP状态码来判断状态
    */
   response => {
     const res = response.data

@@ -28,9 +28,10 @@ const mutations = {
 }
 
 const actions = {
-  // user login
+  // 用户登录
   login({ commit }, userInfo) {
     const { username, password } = userInfo
+    // 在new Promise中，通过login调用了src\api的user.js中的login方法
     return new Promise((resolve, reject) => {
       login({ username: username.trim(), password: password }).then(response => {
         const { data } = response
@@ -43,7 +44,7 @@ const actions = {
     })
   },
 
-  // get user info
+  // 获取用户信息
   getInfo({ commit, state }) {
     return new Promise((resolve, reject) => {
       getInfo(state.token).then(response => {
@@ -64,11 +65,11 @@ const actions = {
     })
   },
 
-  // user logout
+  // 用户注销
   logout({ commit, state }) {
     return new Promise((resolve, reject) => {
       logout(state.token).then(() => {
-        removeToken() // must remove  token  first
+        removeToken() // 必须先删除token
         resetRouter()
         commit('RESET_STATE')
         resolve()
@@ -78,10 +79,10 @@ const actions = {
     })
   },
 
-  // remove token
+  // 删除token
   resetToken({ commit }) {
     return new Promise(resolve => {
-      removeToken() // must remove  token  first
+      removeToken() // 必须先删除token
       commit('RESET_STATE')
       resolve()
     })

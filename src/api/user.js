@@ -1,5 +1,5 @@
 import request from '@/utils/request'
-
+// utils中的request.js很重要。该方法创建axios实例、 request拦截器、response 拦截器。
 export function login(data) {
   return request({
     url: '/vue-admin-template/user/login',

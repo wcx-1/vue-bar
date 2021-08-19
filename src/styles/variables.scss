@@ -1,4 +1,4 @@
-// sidebar
+// 侧边栏
 $menuText:#bfcbd9;
 $menuActiveText:#409EFF;
 $subMenuActiveText:#f4f4f5; //https://github.com/ElemeFE/element/issues/12951
@@ -11,7 +11,7 @@ $subMenuHover:#001528;
 
 $sideBarWidth: 210px;
 
-// the :export directive is the magic sauce for webpack
+// :export 指令webpack的神奇调味料
 // https://www.bluematador.com/blog/how-to-share-variables-between-js-and-sass
 :export {
   menuText: $menuText;

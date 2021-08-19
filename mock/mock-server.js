@@ -55,17 +55,17 @@ module.exports = app => {
   var mockRoutesLength = mockRoutes.mockRoutesLength
   var mockStartIndex = mockRoutes.mockStartIndex
 
-  // watch files, hot reload mock server
+  // 监视文件，热重新加载模拟服务器
   chokidar.watch(mockDir, {
     ignored: /mock-server/,
     ignoreInitial: true
   }).on('all', (event, path) => {
     if (event === 'change' || event === 'add') {
       try {
-        // remove mock routes stack
+        // 删除模拟路由堆栈
         app._router.stack.splice(mockStartIndex, mockRoutesLength)
 
-        // clear routes cache
+        // 清除路由缓存
         unregisterRoutes()
 
         const mockRoutes = registerRoutes(app)

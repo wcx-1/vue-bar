@@ -25,13 +25,13 @@ export default {
   position: relative;
   overflow: hidden;
 }
-.fixed-header+.app-main {
+.fixed-header + .app-main {
   padding-top: 50px;
 }
 </style>
 
 <style lang="scss">
-// fix css style bug in open el-dialog
+// 修复OpenEL对话框中的css样式错误
 .el-popup-parent--hidden {
   .fixed-header {
     padding-right: 15px;

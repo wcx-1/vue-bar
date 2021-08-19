@@ -20,7 +20,7 @@
     z-index: 1001;
     overflow: hidden;
 
-    // reset element-ui css
+    // 重置element-ui css
     .horizontal-collapse-transition {
       transition: 0s width ease-in-out, 0s padding-left ease-in-out, 0s padding-right ease-in-out;
     }
@@ -68,7 +68,7 @@
       width: 100% !important;
     }
 
-    // menu hover
+    // 菜单悬念
     .submenu-title-noDropdown,
     .el-submenu__title {
       &:hover {
@@ -156,7 +156,7 @@
     min-width: $sideBarWidth !important;
   }
 
-  // mobile responsive
+  // 手机端响应
   .mobile {
     .main-container {
       margin-left: 0px;
@@ -185,12 +185,13 @@
   }
 }
 
-// when menu collapsed
+// 当菜单崩溃时
 .el-menu--vertical {
   &>.el-menu {
     .svg-icon {
       margin-right: 16px;
     }
+
     .sub-el-icon {
       margin-right: 12px;
       margin-left: -2px;
@@ -200,12 +201,12 @@
   .nest-menu .el-submenu>.el-submenu__title,
   .el-menu-item {
     &:hover {
-      // you can use $subMenuHover
+      // 你可以使用 $subMenuHover
       background-color: $menuHover !important;
     }
   }
 
-  // the scroll bar appears when the subMenu is too long
+  // 当子菜单过长时，会出现滚动条
   >.el-menu--popup {
     max-height: 100vh;
     overflow-y: auto;
