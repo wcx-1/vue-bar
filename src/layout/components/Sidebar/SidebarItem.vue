@@ -51,6 +51,7 @@ export default {
   },
   methods: {
     hasOneShowingChild(children = [], parent) {
+      // 如果子类是折叠的，就啥都不用干，返回false就好
       const showingChildren = children.filter(item => {
         if (item.hidden) {
           return false
@@ -74,6 +75,7 @@ export default {
 
       return false
     },
+    // 似乎是一种拼接路径的方法，先要确保路径是https?:|mailto:|tel:开头的
     resolvePath(routePath) {
       if (isExternal(routePath)) {
         return routePath

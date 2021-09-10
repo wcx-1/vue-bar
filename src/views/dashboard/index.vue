@@ -10,6 +10,7 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'Dashboard',
   computed: {
+    // 从vuex里面提，有助于以后大型项目的扩展
     ...mapGetters([
       'name'
     ])

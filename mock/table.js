@@ -1,5 +1,6 @@
+// 表格数据
 const Mock = require('mockjs')
-
+// 表格数据有id、title、author、pageviews、status、display_time
 const data = Mock.mock({
   'items|30': [{
     id: '@id',

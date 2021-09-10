@@ -15,6 +15,7 @@
 
 <script>
 export default {
+  // 页面上面左边的logo和给页面起了个标题'Vue Admin Template'
   name: 'SidebarLogo',
   props: {
     collapse: {

@@ -1,6 +1,7 @@
 <script>
 export default {
   name: 'MenuItem',
+  // Vue组件提供了一个functional开关，设置为true后，就可以让组件变为无状态、无实例的函数化组件。因为只是函数，所以渲染的开销相对来说较小。
   functional: true,
   props: {
     icon: {
@@ -20,7 +21,7 @@ export default {
       if (icon.includes('el-icon')) {
         vnodes.push(<i class={[icon, 'sub-el-icon']} />)
       } else {
-        vnodes.push(<svg-icon icon-class={icon}/>)
+        vnodes.push(<svg-icon icon-class={icon} />)
       }
     }
 

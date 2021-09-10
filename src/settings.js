@@ -1,5 +1,5 @@
 module.exports = {
-
+  // 这里可以设置标题
   title: 'Vue Admin Template',
 
   /**

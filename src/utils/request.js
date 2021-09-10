@@ -27,8 +27,8 @@ service.interceptors.request.use(
     return config
   },
   error => {
-    // do something with request error
-    console.log(error) // for debug
+    // 处理 request 错误
+    console.log(error) // 用于调试
     return Promise.reject(error)
   }
 )
@@ -37,18 +37,18 @@ service.interceptors.request.use(
 service.interceptors.response.use(
   /**
    * 如果你想要得到 http 信息，比如 headers 或 status
-   * Please return  response => response
+   * 就return  response => response
   */
 
   /**
    * 通过自定义代码确定请求状态
-   * Here is just an example
+   * 这只是个例子
    * 你也可以通过HTTP状态码来判断状态
    */
   response => {
     const res = response.data
 
-    // if the custom code is not 20000, it is judged as an error.
+    // 如果自定义代码不是20000，则判断为错误
     if (res.code !== 20000) {
       Message({
         message: res.message || 'Error',
@@ -56,29 +56,34 @@ service.interceptors.response.use(
         duration: 5 * 1000
       })
 
-      // 50008: Illegal token; 50012: Other clients logged in; 50014: Token expired;
+      // 50008: 非法token; 50012: 其他客户端已登录; 50014: Token过期;
       if (res.code === 50008 || res.code === 50012 || res.code === 50014) {
-        // to re-login
-        MessageBox.confirm('You have been logged out, you can cancel to stay on this page, or log in again', 'Confirm logout', {
-          confirmButtonText: 'Re-Login',
-          cancelButtonText: 'Cancel',
-          type: 'warning'
+        // 重新登录
+        MessageBox.confirm('您已注销，可以取消以停留在此页面，或重新登录', '确认注销', {
+          confirmButtonText: '重新登录',
+          cancelButtonText: '取消',
+          type: '警告'
         }).then(() => {
+          // 然后就要重置token
           store.dispatch('user/resetToken').then(() => {
+            // 然后重新加载
             location.reload()
           })
         })
       }
+      // 返回错误信息
       return Promise.reject(new Error(res.message || 'Error'))
     } else {
+      // 返回结果
       return res
     }
   },
   error => {
-    console.log('err' + error) // for debug
+    console.log('err' + error) // 用于调试
     Message({
       message: error.message,
       type: 'error',
+      // 应该是等待5秒
       duration: 5 * 1000
     })
     return Promise.reject(error)

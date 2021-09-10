@@ -1,4 +1,4 @@
-
+// 用户信息
 const tokens = {
   admin: {
     token: 'admin-token'
@@ -9,17 +9,18 @@ const tokens = {
 }
 
 const users = {
+  // 原来你就是token啊
   'admin-token': {
-    roles: ['admin'],
-    introduction: 'I am a super administrator',
-    avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
-    name: 'Super Admin'
+    roles: ['admin'], // 应该是权限
+    introduction: '我是一名超级管理员', // 介绍，不过没看到在哪里用到
+    avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif', // 用户头像
+    name: 'Super Admin' // 在dashboard上展示的用户名
   },
   'editor-token': {
-    roles: ['editor'],
-    introduction: 'I am an editor',
-    avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
-    name: 'Normal Editor'
+    roles: ['editor'], // 应该是权限
+    introduction: '我是一名编辑人员', // 介绍，不过没看到在哪里用到
+    avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif', // 用户头像
+    name: 'Normal Editor' // 在dashboard上展示的用户名
   }
 }
 
@@ -36,10 +37,10 @@ module.exports = [
       if (!token) {
         return {
           code: 60204,
-          message: 'Account and password are incorrect.'
+          message: '帐户和密码不正确'
         }
       }
-
+      // 成功
       return {
         code: 20000,
         data: token
@@ -59,10 +60,10 @@ module.exports = [
       if (!info) {
         return {
           code: 50008,
-          message: 'Login failed, unable to get user details.'
+          message: '登录失败，无法获取用户详细信息'
         }
       }
-
+      // 成功
       return {
         code: 20000,
         data: info
@@ -75,6 +76,7 @@ module.exports = [
     url: '/vue-admin-template/user/logout',
     type: 'post',
     response: _ => {
+      // 成功
       return {
         code: 20000,
         data: 'success'

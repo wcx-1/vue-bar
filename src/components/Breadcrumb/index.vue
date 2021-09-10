@@ -1,4 +1,5 @@
 <template>
+  <!-- 写面包屑功能 -->
   <el-breadcrumb class="app-breadcrumb" separator="/">
     <transition-group name="breadcrumb">
       <el-breadcrumb-item v-for="(item,index) in levelList" :key="item.path">
@@ -10,6 +11,7 @@
 </template>
 
 <script>
+// pathToRegexp()作用：将我们输入的url输出为匹配规则
 import pathToRegexp from 'path-to-regexp'
 
 export default {
@@ -40,19 +42,21 @@ export default {
       this.levelList = matched
       // this.levelList = matched.filter(item => item.meta && item.meta.title && item.meta.breadcrumb !== false)
     },
-    isDashboard(route) {
-      const name = route && route.name
-      if (!name) {
-        return false
-      }
-      return name.trim().toLocaleLowerCase() === 'Dashboard'.toLocaleLowerCase()
-    },
+    // isDashboard(route) {
+    //   const name = route && route.name
+    //   if (!name) {
+    //     return false
+    //   }
+    //   return name.trim().toLocaleLowerCase() === 'Dashboard'.toLocaleLowerCase()
+    // },
     pathCompile(path) {
       // 解决这个问题 https://github.com/PanJiaChen/vue-element-admin/issues/561
       const { params } = this.$route
+      // pathToRegexp()作用：将我们输入的url输出为匹配规则
       var toPath = pathToRegexp.compile(path)
       return toPath(params)
     },
+    // 操作路由
     handleLink(item) {
       const { redirect, path } = item
       if (redirect) {

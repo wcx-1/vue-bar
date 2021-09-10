@@ -18,11 +18,14 @@ function registerRoutes(app) {
   }
   const mockRoutesLength = Object.keys(mocksForServer).length
   return {
+    // 长度
     mockRoutesLength: mockRoutesLength,
+    // 开始索引=最终索引-长度
     mockStartIndex: mockLastIndex - mockRoutesLength
   }
 }
 
+// 清除路由缓存
 function unregisterRoutes() {
   Object.keys(require.cache).forEach(i => {
     if (i.includes(mockDir)) {
@@ -51,15 +54,17 @@ module.exports = app => {
     extended: true
   }))
 
+  // 获取长度和开始索引
   const mockRoutes = registerRoutes(app)
   var mockRoutesLength = mockRoutes.mockRoutesLength
   var mockStartIndex = mockRoutes.mockStartIndex
 
-  // 监视文件，热重新加载模拟服务器
+  // 监视文件，热重新加载Mock Server
   chokidar.watch(mockDir, {
     ignored: /mock-server/,
     ignoreInitial: true
   }).on('all', (event, path) => {
+    // 如果是增、改的话
     if (event === 'change' || event === 'add') {
       try {
         // 删除模拟路由堆栈
@@ -68,11 +73,12 @@ module.exports = app => {
         // 清除路由缓存
         unregisterRoutes()
 
+        // 再次获取长度和开始索引
         const mockRoutes = registerRoutes(app)
         mockRoutesLength = mockRoutes.mockRoutesLength
         mockStartIndex = mockRoutes.mockStartIndex
 
-        console.log(chalk.magentaBright(`\n > Mock Server hot reload success! changed  ${path}`))
+        console.log(chalk.magentaBright(`\n > Mock Server热加载成功! changed  ${path}`))
       } catch (error) {
         console.log(chalk.redBright(error))
       }

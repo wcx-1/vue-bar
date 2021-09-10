@@ -3,7 +3,7 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
-/* Layout */
+// 引入layout下的组件
 import Layout from '@/layout'
 
 /**
@@ -27,28 +27,34 @@ import Layout from '@/layout'
 
 /**
  * constantRoutes
- * a base page that does not have permission requirements
- * all roles can be accessed
+ * 没有权限要求的基础页面
+ * 可以访问所有角色
  */
 export const constantRoutes = [
   {
     path: '/login',
+    // 引入views/login/index
     component: () => import('@/views/login/index'),
+    // 渲染该路由入口
     hidden: true
   },
 
   {
     path: '/404',
+    // 引入views/404
     component: () => import('@/views/404'),
+    // 渲染该路由入口
     hidden: true
   },
 
   {
     path: '/',
     component: Layout,
+    // 在父子嵌套结构中，父级的redirect指向子级children里的path
     redirect: '/dashboard',
     children: [{
       path: 'dashboard',
+      // 该名称由<keep-alive>使用（必须设置！！！）
       name: 'Dashboard',
       component: () => import('@/views/dashboard/index'),
       meta: { title: 'Dashboard', icon: 'dashboard' }
@@ -58,8 +64,10 @@ export const constantRoutes = [
   {
     path: '/example',
     component: Layout,
+    // 在父子嵌套结构中，父级的redirect指向子级children里的path
     redirect: '/example/table',
     name: 'Example',
+    // 可以作用判断用户是否已登陆，可以通过meta值，展示面包屑
     meta: { title: 'Example', icon: 'el-icon-s-help' },
     children: [
       {
@@ -163,6 +171,14 @@ export const constantRoutes = [
   // 404页必须放在末尾！！！
   { path: '*', redirect: '/404', hidden: true }
 ]
+
+/**
+ * 下面所有代码的讲解：
+ * 它的原理其实很简单，所有的 vue-router 注册的路由信息都是存放在matcher之中的
+ * 所以当我们想清空路由的时候，我们只要新建一个空的Router实例，将它的matcher重新赋值给我们之前定义的路由就可以了。
+ * 巧妙的实现了动态路由的清除。
+ * 现在我们只需要调用resetRouter，就能得到一个空的路由实例，之后你就可以重新addRoutes你想要的路由了。
+ */
 
 const createRouter = () => new Router({
   // mode: 'history', // 需要服务支持

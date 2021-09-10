@@ -1,5 +1,6 @@
 export default {
   computed: {
+    // 返回设备详情
     device() {
       return this.$store.state.app.device
     }

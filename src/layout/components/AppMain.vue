@@ -1,6 +1,7 @@
 <template>
   <section class="app-main">
     <transition name="fade-transform" mode="out-in">
+      <!-- 主体部分：找路由去，别找我 -->
       <router-view :key="key" />
     </transition>
   </section>
